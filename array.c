@@ -27,6 +27,9 @@ void init_vector(vector **arr_ptr, int32_t size) {
 
 void print_vector(vector *array) {
   for (int32_t i = 0; i < array->size; ++i) {
+    if (array->array[i].type == 7) {
+      // printf("[ERROR] on line %d, Unkown Character\n", array->array[i].line);
+    }
     printf("Value: %s | Type: %s | Line: %d\n", array->array[i].value,
            TokenTypeNames[array->array[i].type], array->array[i].line);
   }

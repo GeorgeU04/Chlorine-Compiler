@@ -73,11 +73,44 @@ vector *tokenize(FILE *file, vector *token_array) {
     // newlines
     else if (c == '\n') {
       ++line;
+    }
+    // comments
+    else if (c == '/' && (c = getc(file)) == '/') {
+      while (((c = getc(file)) != '\n') && c != EOF) {
+      }
+      current.type = TOKEN_COMMENT;
+      current.line = line;
+      current.value[0] = '/';
+      current.value[1] = '/';
+      current.value[2] = '\0';
+      pushback(token_array, current);
+      if (c == '\n') {
+        ++line;
+      }
+    }
+    // operators
+    else if (is_operator(c)) {
+      ungetc(c, file);
+      size_t i = 0;
+      while (is_operator((c = getc(file)))) {
+        current.value[i++] = c;
+      }
+      current.value[i] = '\0';
+      if (c != EOF)
+        ungetc(c, file);
+      current.type = TOKEN_OPERATOR;
+      current.line = line;
+      pushback(token_array, current);
+    }
+    // spaces
+    else if (is_space(c)) {
+      continue;
     } else {
       current.type = TOKEN_ERROR;
       current.line = line;
       current.value[0] = c;
       current.value[1] = '\0';
+      pushback(token_array, current);
     }
   }
   return token_array;

@@ -19,7 +19,7 @@ typedef struct {
   char value[32];
   uint32_t line;
 } Token;
-
+bool is_operator(char c);
 bool is_ident_starter(char c);
 bool is_ident_part(char c);
 bool is_space(char c);

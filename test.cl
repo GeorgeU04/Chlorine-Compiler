@@ -1,3 +1,6 @@
+// this is a comment
 int main(){
-  return 0;
+  int a = 0;
+  int b = a + 1;
+  return b;
 }
