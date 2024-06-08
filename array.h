@@ -9,7 +9,7 @@ typedef struct vector {
   Token *array;
 } vector;
 
-void init_vector(vector **arr_ptr, int32_t size);
+void init_vector(vector **arr_ptr, uint32_t size);
 
 void pushback(vector *array, Token value);
 
@@ -17,7 +17,7 @@ void print_vector(vector *array);
 
 void insert(vector *array, Token value, int32_t index);
 
-void get_item(vector *array, int32_t index);
+Token *get_item(vector *array, int32_t index);
 
 void delete_item(vector *array, int32_t index);
 

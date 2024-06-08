@@ -1,6 +1,8 @@
 #ifndef AST_H
 #define AST_H
 
+#include <stdint.h>
+#include <stdlib.h>
 typedef enum {
   AST_PROGRAM,
   AST_FUNCTION,
@@ -73,9 +75,11 @@ ASTNode *create_program_node(ASTNode *functions);
 ASTNode *create_function_node(ASTNode *body, char *name);
 ASTNode *create_compound_stmt_node(ASTNode *stmts);
 ASTNode *create_declaration_node(ASTNode *init_value, char *var_name);
-ASTNode *create_assignmnet_node(ASTNode *value, char *var_name);
+ASTNode *create_assignment_node(ASTNode *value, char *var_name);
 ASTNode *create_return_node(ASTNode *value);
 ASTNode *create_binary_op_node(ASTNode *left, ASTNode *right, char op);
 ASTNode *create_literal_node(int value);
 ASTNode *create_identifier_node(char *name);
+void free_ast(ASTNode *node);
+void print_ast(ASTNode *node, int32_t space);
 #endif

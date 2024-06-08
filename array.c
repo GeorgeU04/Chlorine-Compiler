@@ -8,7 +8,7 @@ const char *TokenTypeNames[] = {
     "TOKEN_NUMBER",  "TOKEN_IDENT", "TOKEN_KEYWORD",   "TOKEN_OPERATOR",
     "TOKEN_COMMENT", "TOKEN_DELIM", "TOKEN_SEMICOLON", "TOKEN_ERROR"};
 
-void init_vector(vector **arr_ptr, int32_t size) {
+void init_vector(vector **arr_ptr, uint32_t size) {
   vector *array;
   array = (vector *)malloc(sizeof(vector));
   if (!array) {
@@ -54,12 +54,13 @@ void free_vector(vector *array) {
   free(array);
 }
 
-void get_item(vector *array, int32_t index) {
+Token *get_item(vector *array, int32_t index) {
   if (index >= array->size || index < 0) {
     printf("Index out of range silly goose\n");
-    return;
+    return NULL;
   }
-  printf("%s\n", array->array[index].value);
+  // printf("%s\n", array->array[index].value);
+  return &array->array[index];
 }
 
 void insert(vector *array, Token value, int32_t index) {
